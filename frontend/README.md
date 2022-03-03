@@ -3,7 +3,7 @@
 Docker commands for launch frontend node app:
 
 1. docker build -f Dockerfile -t node-homework-1 .
-2. docker run -it -p 3000:3000 --name my-node-homework node-homework-1
+2. docker run -it -d -p 3000:3000 --name my-node-homework node-homework-1
 
 
 ##############################################################
