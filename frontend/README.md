@@ -1,3 +1,13 @@
+########From Nagiev Natig student############################
+
+Docker commands for launch frontend node app:
+
+1. docker build -f Dockerfile -t node-homework-1 .
+2. docker run -it -d -p 3000:3000 --name my-node-homework node-homework-1
+
+
+##############################################################
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
