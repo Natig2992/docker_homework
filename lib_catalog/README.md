@@ -9,5 +9,5 @@ docker build -t my-backend-2 .
 docker run -d -p 8000:8000 --name my-backend-2 --net backend_net --ip=192.168.8.100 my-backend-2
 ```
 
-# Database postgresql commnd run container:
+# Database postgresql command run container:
 `docker run -d -p 5432:5432 --name postgresql_db --net backend_net --ip=192.168.8.101 -e POSTGRES_USER=django -e POSTGRES_PASSWORD=django  -e POSTGRES_NAME=django postgres:alpine3.14`
