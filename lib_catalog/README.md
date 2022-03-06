@@ -13,3 +13,18 @@ docker run -d -p 8000:8000 --name my-backend-2 --net backend_net --ip=192.168.8.
 ```
 docker run -d -p 5432:5432 --name postgresql_db --net backend_net --ip=192.168.8.101 -e POSTGRES_USER=django -e POSTGRES_PASSWORD=django  -e POSTGRES_NAME=django postgres:alpine3.14
 ```
+# Change DB connectivity in setting.py file:
+
+```
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "django",
+        "USER": "django",
+        "PASSWORD": "django",
+        "HOST": "postgresql_db",
+        "PORT": "5432",
+        "CONN_MAX_AGE": None
+    },
+}
+```
