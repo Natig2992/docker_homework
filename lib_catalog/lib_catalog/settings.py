@@ -121,7 +121,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -135,8 +135,14 @@ REST_FRAMEWORK = {
                             'rest_framework.filters.SearchFilter']
 }
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://82.148.16.149:3000',
+]
+
 CORS_ORIGIN_WHITELIST = [
-    "http://node_react_app:3000",
+    "http://localhost:3000",
+    "http://82.148.16.149:3000",
 ]
 
 FIXTURES_DIRS = os.path.join(BASE_DIR, 'catalog/fixtures')
