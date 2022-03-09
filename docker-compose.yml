@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+  node_frontend:
+    restart: always
+    container_name: node_front
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres_db
+      - app
+    networks:
+      - frontnet
+      - backnet
+
+
+  postgres_db:
+    restart: always
+    image: "postgres:13"
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=django
+      - POSTGRES_NAME=django
+    networks:
+      - backnet
+
+  app:
+    restart: always
+    container_name: backend_app
+    build:
+      context: ./lib_catalog/
+      dockerfile: Dockerfile
+    ports:
+      - "8000"
+    depends_on:
+      - postgres_db
+    networks:
+      - backnet
+
+networks:
+   frontnet:
+      driver: bridge
+      ipam: 
+        config:
+           - subnet: 192.168.88.0/24
+             gateway: 192.168.88.1
+   backnet:
+      driver: bridge
+      ipam:
+        config:
+           - subnet: 192.168.98.0/24
+             gateway: 192.168.98.1
