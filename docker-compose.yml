@@ -6,25 +6,13 @@ services:
     build:
       context: ./frontend/
       dockerfile: Dockerfile
+    image: my_frontend:v1.0
     ports:
       - "3000:3000"
     depends_on:
-      - postgres_db
       - app
     networks:
       - frontnet
-      - backnet
-
-
-  postgres_db:
-    restart: always
-    image: "postgres:13"
-    container_name: postgres_db
-    environment:
-      - POSTGRES_USER=django
-      - POSTGRES_PASSWORD=django
-      - POSTGRES_NAME=django
-    networks:
       - backnet
 
   app:
@@ -33,12 +21,27 @@ services:
     build:
       context: ./lib_catalog/
       dockerfile: Dockerfile
-    ports:
+    image: my_backend:v1.0
+    expose:
       - "8000"
     depends_on:
       - postgres_db
     networks:
       - backnet
+  
+  postgres_db:
+    restart: always
+    image: "postgres:13"
+    container_name: postgres_db
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_NAME
+    expose: 
+      - "5432"
+    networks:
+      - backnet
+
 
 networks:
    frontnet:
