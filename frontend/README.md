@@ -2,8 +2,8 @@
 
 Docker commands for launch frontend node app:
 
-1. docker build -t my-node-nginx-1:v1.0 -t my-node-nginx-1:latest .
-2. docker run -d -p 8081:80 --name node-nginx-1 my-node-nginx-1
+1. docker build -t nginx-node:v1.0 -t nginx-node:latest .
+2. docker run -d -p 8081:80 --name nginx-node nginx-node:v1.0
 
 
 ##############################################################
@@ -17,7 +17,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://backend-app:3000](http://backend-app:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.

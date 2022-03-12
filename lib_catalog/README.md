@@ -5,13 +5,13 @@
 
 # Build and Up container for backend:
 ```
-docker build -t my-backend:v1.0 -t my-backend:latest .
-docker run -d -p 8000:8000 --name my-backend --net backend_net --ip=192.168.8.100 my-backend:v1.0
+docker build -t my_backend:v1.0 -t my_backend:latest .
+docker run -d -p 8000:8000 --name backend-app --net backend_net --ip=192.168.8.100 my_backend:v1.0
 ```
 
 # Database postgresql command run container:
 ```
-docker run -d --name postgresql_db --net backend_net --ip=192.168.8.101 -e POSTGRES_USER=django -e POSTGRES_PASSWORD=django  -e POSTGRES_NAME=django postgres:alpine3.14
+docker run -d --name postgres_db --net backend_net --ip=192.168.8.101 -e POSTGRES_USER=django -e POSTGRES_PASSWORD=django  -e POSTGRES_NAME=django postgres:13
 ```
 # Change DB connectivity in setting.py file:
 
@@ -22,7 +22,7 @@ DATABASES = {
         "NAME": "django",
         "USER": "django",
         "PASSWORD": "django",
-        "HOST": "postgresql_db",
+        "HOST": "postgres_db",
         "PORT": "5432",
         "CONN_MAX_AGE": None
     },

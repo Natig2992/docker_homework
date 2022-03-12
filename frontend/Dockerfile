@@ -1,6 +1,28 @@
-FROM node:14-alpine
+#Build Stage Start
+
+#Specify a base image
+FROM node:14-alpine as builder 
+
+#Specify a working directory
 WORKDIR /app
-COPY . .
-EXPOSE 3000
-RUN npm install -i &&  npm run build && npm install -g serve
-CMD ["serve", "-s", "build"]
+#Copy the dependencies file
+COPY package*.json ./
+
+#Install dependencies
+RUN npm install
+
+#Copy remaining files
+COPY ./ /app
+#COPY . .
+#COPY ./nginx.conf .
+#Build the project for production
+RUN npm run build 
+
+CMD npm start
+
+#Run Stage Start
+FROM nginx:1.21
+EXPOSE 80
+#Copy production build files from builder phase to nginx
+COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
