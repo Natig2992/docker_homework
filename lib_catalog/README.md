@@ -5,8 +5,8 @@
 
 # Build and Up container for backend:
 ```
-docker build -t my-backend-2 .
-docker run -d -p 8000:8000 --name my-backend-2 --net backend_net --ip=192.168.8.100 my-backend-2
+docker build -t my-backend:v1.0 -t my-backend:latest .
+docker run -d -p 8000:8000 --name my-backend --net backend_net --ip=192.168.8.100 my-backend:v1.0
 ```
 
 # Database postgresql command run container:
